@@ -117,6 +117,16 @@ def calculate_stock_data(data):
 
     return new_stock_data
 
+def get_stock_values(data):
+    headings = SHEET.worksheet('stock').row_values(1)
+    #dictionary = {key:value for key, value in zip(headings,data)}
+    dictionary = {}
+    for key, value in zip(headings, data):
+        each_entry = {key: value}
+        dictionary[key] = value
+
+    return dictionary
+
 
 def main():
     """
@@ -133,4 +143,7 @@ def main():
 
 
 print("Welcome to Love Sandwiches Data Automation")
-main()
+stock_data = main()
+
+stock_values = get_stock_values(stock_data)
+print(stock_values)
